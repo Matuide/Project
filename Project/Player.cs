@@ -8,5 +8,9 @@ namespace Project
 {
     class Player
     {
+        public Player()
+        {
+
+        }
     }
 }

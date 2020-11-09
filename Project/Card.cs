@@ -8,5 +8,15 @@ namespace Project
 {
     class Card
     {
+        public int suit;
+        public int number;
+        public int tempnumber;
+
+        public Card(int suit, int number, int tempnumber)
+        {
+            this.suit = suit;
+            this.number = number;
+            this.tempnumber = tempnumber;
+        }
     }
 }

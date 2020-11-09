@@ -6,9 +6,7 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class HumanPlayer
+    class Crib
     {
-        Player human = new Player();
-
     }
 }

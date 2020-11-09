@@ -8,5 +8,9 @@ namespace Project
 {
     class Hand
     {
+        public Hand()
+        {
+
+        }
     }
 }
