@@ -10,6 +10,7 @@ namespace Project
     {
         public int suit;
         public int number;
+        
         public int tempnumber;
 
         public Card(int suit, int number, int tempnumber)
@@ -17,6 +18,7 @@ namespace Project
             this.suit = suit;
             this.number = number;
             this.tempnumber = tempnumber;
+            
         }
     }
 }
