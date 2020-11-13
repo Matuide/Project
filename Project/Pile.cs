@@ -6,13 +6,14 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class HumanPlayer:Player
+    
+    class Pile
     {
-        public override int move()
+        private Card[] pile;
+        public Pile()
         {
-            return 1;
+            pile = new Card[8];
         }
-
-
+        
     }
 }

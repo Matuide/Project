@@ -6,8 +6,15 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class AIPlayer
+    class AIPlayer : Player
     {
-        Player AI = new Player();
+      override public int move()
+        {
+            return 1;
+        }
+        
+
+        
+
     }
 }

@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    class Player
+     abstract class Player
     {
+        private Hand hand;
         public Player()
         {
-
+            hand = new Hand();
+            
         }
+        abstract public int move();
+        
+
+        
     }
 }

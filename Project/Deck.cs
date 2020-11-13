@@ -10,12 +10,14 @@ namespace Project
     {
         private Card[] stack;
         private int top;
+        private const int DECKSIZE = 52;
 
-        public Deck(int size)
+        public Deck()
 
         {
-            stack = new Card[size];
-            top = size;
+            stack = new Card[DECKSIZE];
+            top = DECKSIZE;
+            this.AddToStack();
         }
 
         public Card pop()
@@ -33,7 +35,7 @@ namespace Project
         }
 
        
-        public Card[] AddToStack()
+        public void AddToStack()
         {
             int a = 0;
             
@@ -57,13 +59,13 @@ namespace Project
             
             
 
-            return stack;
+            
         }
 
         public void Shuffle()
         {
-            Deck stack1 = new Deck(52);
-            Deck stack2 = new Deck(52);
+            Deck stack1 = new Deck();
+            Deck stack2 = new Deck();
             Random random = new Random();
             int randomnumber = random.Next(52);
             for (int i = 0; i < 12000; i++)
