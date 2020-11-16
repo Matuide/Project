@@ -38,27 +38,24 @@ namespace Project
         public void AddToStack()
         {
             int a = 0;
-            
-            
-                for (int i = 1; i < 5; i++)
-                {
-                    for (int z = 1; z < 14; z++)
-                    {
-                        if (z < 11)
-                        {
-                            a = z;
-                        }
-                        else
-                        {
-                            a = 10;
-                        }
-                        Card card = new Card(i, z, a);
-                        push(card);
-                    }
-                }
-            
-            
 
+
+            for (int i = 1; i < 5; i++)
+            {
+                for (int z = 1; z < 14; z++)
+                {
+                    if (z < 11)
+                    {
+                        a = z;
+                    }
+                    else
+                    {
+                        a = 10;
+                    }
+                    Card card = new Card(i, z, a);
+                    push(card);
+                }
+            }
             
         }
 

@@ -6,15 +6,8 @@ using System.Threading.Tasks;
 
 namespace Project
 {
-    
-    class Pile
+    class ExtraCard
     {
-        private Card[] pile;
-        private int size;
-        public Pile(size)
-        {
-            pile = new Card[size];
-        }
         
     }
 }

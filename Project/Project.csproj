@@ -67,6 +67,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="Crib.cs" />
     <Compile Include="Deck.cs" />
+    <Compile Include="ExtraCard.cs" />
     <Compile Include="Game.cs" />
     <Compile Include="Hand.cs" />
     <Compile Include="HumanPlayer.cs" />
@@ -102,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="assets\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
