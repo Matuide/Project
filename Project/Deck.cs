@@ -27,7 +27,10 @@ namespace Project
             c = stack[top];
             return c;
         }
+        public void Deal()
+        {
 
+        }
         public void push(Card c)
         {
             stack[top] = c;

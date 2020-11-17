@@ -11,7 +11,7 @@ namespace Project
     {
         private Card[] pile;
         private int size;
-        public Pile(size)
+        public Pile()
         {
             pile = new Card[size];
         }

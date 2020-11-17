@@ -20,13 +20,21 @@ namespace Project
     /// </summary>
     public partial class MainWindow : Window
     {
+        Cribbage c;
         public MainWindow()
         {
             InitializeComponent();
+
+            c = new Cribbage();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
+            c.Shuffle();
+            c.Deal();
+
+            Deck tempDeck = c.getDeck();
 
         }
     }

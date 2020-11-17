@@ -15,12 +15,26 @@ namespace Project
             hand = new Card[6];
             counter = 0;
         }
-        private void ADDCard()
+        
+
+
+        private void addCard(Card c)
         {
-            for (int a =0;a<6 ;a++ )
-            {
-                hand[a] = ;
-            }
+            hand[counter] = c;
+            counter = counter + 1;
+        }
+
+        private Card getVard(int index)
+        {
+
+            return hand[counter];
+
+        }
+
+        private void setCard(Card c, int index)
+        {
+            hand[index] = c;
+
         }
         private int CountPoints(Card[] hand)
         {
