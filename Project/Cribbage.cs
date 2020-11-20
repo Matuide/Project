@@ -26,11 +26,19 @@ namespace Project
             deck.Shuffle();
 
         }
+        public void playround()
+        {
+            Deal();
+
+        }
 
         public void Deal()
         {
             deck.Deal();
+            for (int a = 0; a<6;a++)
+            {
 
+            }
         }
 
         public Deck getDeck()

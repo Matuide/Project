@@ -10,6 +10,7 @@ namespace Project
     {
         private Card[] hand;
         private int counter;
+        private Card extra;
         public Hand()
         {
             hand = new Card[6];
@@ -23,8 +24,16 @@ namespace Project
             hand[counter] = c;
             counter = counter + 1;
         }
+        public Card getextra()
+        {
+            return extra;
+        }
+        public void addextra(Card d)
+        {
+            extra = d;
+        }
 
-        private Card getVard(int index)
+        private Card getCard(int index)
         {
 
             return hand[counter];
@@ -42,7 +51,7 @@ namespace Project
             int count = 0;
 
             int points = 0;
-
+            addCard(extra);
             //first to check for flush
             for (int b = 1; b < 5; b++)
             {
@@ -257,7 +266,7 @@ namespace Project
             //finally to checks for nobs
             for (int n = 0; n < 5; n++)
             {
-                if (hand[n].suit == ExtraCard.suit)
+                if (hand[n].suit == extra.suit)
                 {
                     if (hand[n].number == 11)
                     {
@@ -266,7 +275,8 @@ namespace Project
 
                 }
             }
-
+            hand[4] = null;
+            counter = 3;
             return points;
         }
 
