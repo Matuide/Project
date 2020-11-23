@@ -30,7 +30,8 @@ namespace Project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            
+            play.Visibility = Visibility.Hidden;
             c.Shuffle();
             c.Deal();
 

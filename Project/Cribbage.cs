@@ -22,8 +22,29 @@ namespace Project
 
         public void Shuffle()
         {
-
-            deck.Shuffle();
+            Deck stack1 = new Deck();
+            Deck stack2 = new Deck();
+            Random random = new Random();
+            int randomnumber = random.Next(52);
+            for (int i = 0; i < 12000; i++)
+            {
+                for (int n = 0; n < randomnumber; n++)
+                {
+                    stack1.push(deck.pop());
+                }
+                for (int n = 0; n < 52 - randomnumber; n++)
+                {
+                    stack2.push(deck.pop());
+                }
+                for (int n = 0; n < randomnumber; n++)
+                {
+                    deck.push(stack1.pop());
+                }
+                for (int n = 0; n < 52 - randomnumber; n++)
+                {
+                    deck.push(stack2.pop());
+                }
+            }
 
         }
         public void playround()

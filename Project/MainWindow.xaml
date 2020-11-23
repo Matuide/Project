@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Button Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="365,181,0,0" Click="Button_Click"/>
-
+    <Grid Name="GridPanel" Background="green" Width="800" Height="420"  
+   VerticalAlignment="Top" HorizontalAlignment="Center" >
+        <Button Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="365,181,0,0" Click="Button_Click"/>
     </Grid>
 </Window>
