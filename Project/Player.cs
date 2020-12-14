@@ -14,16 +14,31 @@ namespace Project
         public Player()
         {
             hand = new Hand();
+
             
         }
         abstract public int move();
-
-
-        public Boolean addCard(Card c)
+        public Card removecard()
         {
-            bool t = false;
+            return hand.remove();
+        }
+        
+        public Card[] ReturnHand()
+        {
+            return hand.gethand();
+        }
 
-            return t;
+        public void addCard(Card c)
+        {
+            
+            hand.addCard(c);
+            
+        }
+
+        public Hand getHand()
+        {
+
+            return hand;
         }
         
 

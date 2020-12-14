@@ -9,7 +9,9 @@ namespace Project
     class Cribbage
     {
         private Deck deck;
+        private Card extracard;
         private Player[]  players  = new Player[2];
+        private Crib c;
 
         public Cribbage()
         {
@@ -17,55 +19,100 @@ namespace Project
             players[0] = new HumanPlayer();
             players[1] = new AIPlayer();
 
+            c = new Crib();
 
-        }
-
-        public void Shuffle()
-        {
-            Deck stack1 = new Deck();
-            Deck stack2 = new Deck();
-            Random random = new Random();
-            int randomnumber = random.Next(52);
-            for (int i = 0; i < 12000; i++)
-            {
-                for (int n = 0; n < randomnumber; n++)
-                {
-                    stack1.push(deck.pop());
-                }
-                for (int n = 0; n < 52 - randomnumber; n++)
-                {
-                    stack2.push(deck.pop());
-                }
-                for (int n = 0; n < randomnumber; n++)
-                {
-                    deck.push(stack1.pop());
-                }
-                for (int n = 0; n < 52 - randomnumber; n++)
-                {
-                    deck.push(stack2.pop());
-                }
-            }
-
-        }
-        public void playround()
-        {
-            Deal();
-
-        }
-
-        public void Deal()
-        {
-            deck.Deal();
-            for (int a = 0; a<6;a++)
-            {
-
-            }
         }
 
         public Deck getDeck()
         {
             return deck;
+        } 
+
+        public Player getPlayer(int number)
+        {
+            return players[number];
         }
+
+
+
+      
+
+        
+
+        public void Shuffle()
+        {
+            Random rand = new Random((int)DateTime.Now.Ticks);
+            int r=0;
+            int g=r;
+
+            for (int i = 0; i < 1000; i++)
+            {
+
+                
+                    r = rand.Next(0, 51);
+                    g = rand.Next(0, 52);
+                // Random for remaining positions. 
+                
+
+                //swapping the elements 
+                Card temp = deck.GetCard1(r);
+                deck.returncard(r,deck.GetCard1(g));
+                deck.returncard(g, temp);
+                
+
+            } 
+
+
+        }
+
+        public void startround()
+        {
+            Shuffle();
+            Deal();
+            //players[0].SortHand();
+            //players[1].SortHand();
+
+        }
+
+
+        public void playerClickCard()
+        {
+            // Manages throwing cards
+            Console.WriteLine("Click ");
+        }
+        public void playround()
+        {
+            
+            returntodeck();
+            
+        }
+        public void returntodeck()
+        {
+            for (int h = 0; h<6;h++)
+            {
+                deck.push(players[0].removecard());
+                deck.push(players[1].removecard());
+            }
+            
+         
+        }
+        
+
+        public void Deal()
+        {
+            
+            for (int a = 0; a<6;a++)
+            {
+                players[0].addCard(deck.pop());
+                players[1].addCard(deck.pop());
+            }
+            extracard = deck.pop();
+        }
+        
+
+        
+
+       
 
 
 

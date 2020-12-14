@@ -8,5 +8,7 @@ namespace Project
 {
     class Crib
     {
+
+        private Card[] spares;
     }
 }

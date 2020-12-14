@@ -18,11 +18,30 @@ namespace Project
         }
         
 
+        public Card remove()
+        {
+            counter = counter - 1;
+            Card c = hand[counter];
+            hand[counter] = null;
+            return c;
 
-        private void addCard(Card c)
+        }
+        
+        public void addCard(Card c)
         {
             hand[counter] = c;
-            counter = counter + 1;
+            
+            
+                counter++;
+            
+        
+            
+        }
+        public Card[] gethand()
+        {
+            Card[] returnhand = hand;
+     
+            return returnhand;
         }
         public Card getextra()
         {
@@ -35,8 +54,15 @@ namespace Project
 
         private Card getCard(int index)
         {
-
-            return hand[counter];
+            if (counter>0)
+            {
+                return hand[counter-1];
+            }
+            else
+            {
+                return null;
+            }
+            
 
         }
 

@@ -27,10 +27,7 @@ namespace Project
             top--;
             return c;
         }
-        public void Deal()
-        {
-
-        }
+      
         public void push(Card c)
         {
             if(top < 51)
@@ -39,7 +36,14 @@ namespace Project
 
             
         }
-
+        public Card GetCard1(int pos)
+        {
+            return stack[pos];
+        }
+        public void returncard(int pos, Card card)
+        {
+            stack[pos] = card;
+        }
        
         public void AddToStack()
         {
