@@ -87,11 +87,12 @@ namespace Project
             card.Margin = new Thickness(offset * 108, 0, 0, 0);
             if(human)
             {
-                bottomCanvas.Children.Add(card);
+                HumanCard1 = card;
                 humansHand[offset] = card;
             }
             else
             {
+                AICard1 = img;
                 AIHand[offset] = card;
             }
                 

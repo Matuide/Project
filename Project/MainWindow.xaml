@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid Name="GridPanel" Background="green" Width="800" Height="420"  
+    <Grid Name="GridPanel" Background="black" Width="800" Height="420"  
    VerticalAlignment="Top" HorizontalAlignment="Center" >
         <Grid Name="Connect4_Board" Margin="20" Grid.Column="0">
             <Grid.RowDefinitions>
@@ -28,11 +28,34 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard1" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard2" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard3" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard4" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard5" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard6" Grid.Column="10"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard1"  Grid.Column="0"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard2" Grid.Column="2"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard3" Grid.Column="4"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard4" Grid.Column="6"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard5" Grid.Column="8"/>
+            <Button Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard6" Grid.Column="10"/>
+
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card1" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card2" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card3" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card4" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card5" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card6" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card7" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card8" Grid.Column="10"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card9" Grid.Column="10"/>
         </Grid>
 
 
         <Button Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="365,181,0,0" Click="Button_Click"/>
-        <Canvas Name="bottomCanvas" Width="600" Height="150" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+        
     </Grid>
 </Window>
