@@ -83,11 +83,14 @@ namespace Project
             img.Height = 80;
             img.Source = bitm;
             card.Content = img;
-            card.Visibility = Visibility.Visible;
             card.Margin = new Thickness(offset * 108, 0, 0, 0);
             if(human)
             {
-                HumanCard1 = card;
+                card.Content = img;
+                card.Visibility = Visibility.Visible;
+                Connect4_Board.Children.Add(card);
+                Grid.SetColumn(card, offset);
+                Grid.SetRow(card, 5);
                 humansHand[offset] = card;
             }
             else

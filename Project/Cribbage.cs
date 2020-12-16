@@ -43,7 +43,7 @@ namespace Project
         {
             Random rand = new Random((int)DateTime.Now.Ticks);
             int r=0;
-            int g=r;
+            int g=0;
 
             for (int i = 0; i < 1000; i++)
             {
