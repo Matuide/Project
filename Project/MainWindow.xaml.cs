@@ -23,14 +23,14 @@ namespace Project
         Cribbage c;
 
         Button[] humansHand = new Button[6];
-        Button[] AIHand = new Button[6];
-        
+        Image[] AIHand = new Image[6];
 
 
         public MainWindow()
         {
             InitializeComponent();
-            
+
+            //AICards = new Image[] { AICard1, AICard2, AICard3, AICard4, AICard5, AICard6 };
 
             c = new Cribbage();
         }
@@ -82,21 +82,24 @@ namespace Project
             img.Width = 100;
             img.Height = 80;
             img.Source = bitm;
-            card.Content = img;
-            card.Margin = new Thickness(offset * 108, 0, 0, 0);
+            
             if(human)
             {
                 card.Content = img;
+                card.Click += Card_Click;
                 card.Visibility = Visibility.Visible;
                 Connect4_Board.Children.Add(card);
                 Grid.SetColumn(card, offset);
-                Grid.SetRow(card, 5);
+                Grid.SetRow(card, 4);
                 humansHand[offset] = card;
             }
             else
             {
-                AICard1 = img;
-                AIHand[offset] = card;
+                img.Visibility = Visibility.Visible;
+                Connect4_Board.Children.Add(img);
+                Grid.SetColumn(img,offset);
+                Grid.SetRow(img,0);
+                AIHand[offset] = img;
             }
                 
         }
@@ -106,6 +109,13 @@ namespace Project
 
         }
 
+
+        void Card_Click(object sender, RoutedEventArgs e)
+        {
+            Button tempCard = sender as Button;
+            tempCard.Visibility = Visibility.Hidden;
+            //do stuff like put into crib method in game ect...
+        }
 
     }
 }
