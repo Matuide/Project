@@ -114,7 +114,7 @@ namespace Project
         {
             Button tempCard = sender as Button;
             tempCard.Visibility = Visibility.Hidden;
-            //do stuff like put into crib method in game ect...
+            //do stuff like put into crib method in game etc...
         }
 
     }
