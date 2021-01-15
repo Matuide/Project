@@ -35,5 +35,9 @@ namespace Project
 
             return toreturn;
         }
+        public int Count()
+        {
+            return crib.gethand().Length;
+        }
     }
 }

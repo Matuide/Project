@@ -26,6 +26,18 @@ namespace Project
             return c;
 
         }
+
+
+        public void RemoveCard(Card c)
+        {
+            for(int i = 0; i < hand.Length; i++)
+            {
+                if(c.getName() == hand[i].getName())
+                {
+                    hand[i] = null;
+                }
+            }
+        }
         
         public void addCard(Card c)
         {

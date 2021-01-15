@@ -24,7 +24,7 @@ namespace Project
 
         Button[] humansHand = new Button[6];
         Image[] AIHand = new Image[6];
-        Crib crib;
+        //Crib crib;
 
 
         public MainWindow()
@@ -115,8 +115,20 @@ namespace Project
         void Card_Click(object sender, RoutedEventArgs e)
         {
             Button tempCard = sender as Button;
+            Card card = null;
+            foreach(Card temp in c.getPlayer(1).getHand().gethand())
+            {
+                if(temp.getName() == tempCard.Name)
+                {
+                    card = temp;
+                }
+            }
             tempCard.Visibility = Visibility.Hidden;
-            //do stuff like put into crib method in game etc...
+            c.playerClickCard(card);
+            if(c.GetCrib().Count() % 2 == 0)
+            {
+                //turn is over --> AI turn()
+            }
         }
 
     }

@@ -28,6 +28,11 @@ namespace Project
             return deck;
         } 
 
+        public Crib GetCrib()
+        {
+            return c;
+        }
+
         public Player getPlayer(int number)
         {
             return players[number];
@@ -49,8 +54,8 @@ namespace Project
             {
 
                 
-                    r = rand.Next(0, 51);
-                    g = rand.Next(0, 52);
+                r = rand.Next(0, 51);
+                g = rand.Next(0, 52);
                 // Random for remaining positions. 
                 
 
@@ -75,10 +80,10 @@ namespace Project
         }
 
 
-        public void playerClickCard()
+        public void playerClickCard(Card cr)
         {
-            // Manages throwing cards
-            Console.WriteLine("Click ");
+            players[0].getHand().RemoveCard(cr);
+            c.addtocrib(cr);
         }
         public void playround()
         {
