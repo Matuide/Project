@@ -24,6 +24,7 @@ namespace Project
 
         Button[] humansHand = new Button[6];
         Image[] AIHand = new Image[6];
+        Crib crib;
 
 
         public MainWindow()
@@ -78,7 +79,8 @@ namespace Project
             Image img = new Image();
             BitmapImage bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
             //might want to change this format
-            card.Name = "C" + Convert.ToString(num)+ "b" + Convert.ToString(suit);
+            card.Name = "C" + Convert.ToString(num) + Convert.ToString(suit);
+            
             img.Width = 100;
             img.Height = 80;
             img.Source = bitm;

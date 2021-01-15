@@ -11,9 +11,13 @@ namespace Project
 
         private Hand crib;
         private int end = 0;
+        public Crib()
+        {
+            crib = new Hand();
+        }
         public void addtocrib(Card card)
         {
-            crib[end] = card;
+            crib.addCard(card);
             end++;
         }
         public Card returnfromcrib()
@@ -25,7 +29,7 @@ namespace Project
             }
             else
             {
-                toreturn = crib[end - 1];
+                toreturn = crib.remove();
                 end = end - 1;
             }
 
