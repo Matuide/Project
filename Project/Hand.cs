@@ -32,7 +32,7 @@ namespace Project
         {
             for(int i = 0; i < hand.Length; i++)
             {
-                if(c.getName() == hand[i].getName())
+                if(hand[i] != null && c.getName() == hand[i].getName())
                 {
                     hand[i] = null;
                 }

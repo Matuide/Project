@@ -116,11 +116,15 @@ namespace Project
         {
             Button tempCard = sender as Button;
             Card card = null;
-            foreach(Card temp in c.getPlayer(1).getHand().gethand())
+            foreach(Card temp in c.getPlayer(0).getHand().gethand())
             {
-                if(temp.getName() == tempCard.Name)
+                if (temp != null)
                 {
-                    card = temp;
+                    Console.WriteLine("C" + temp.getName());
+                    if (("C" + temp.getUIName()) == tempCard.Name)
+                    {
+                        card = temp;
+                    }
                 }
             }
             tempCard.Visibility = Visibility.Hidden;

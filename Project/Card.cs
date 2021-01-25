@@ -46,5 +46,10 @@ namespace Project
         {
             return Convert.ToString(number) + ConvertSuit(suit);
         }
+
+        public string getUIName()
+        {
+            return Convert.ToString(number) + Convert.ToString(suit);
+        }
     }
 }
