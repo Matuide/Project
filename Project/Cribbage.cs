@@ -113,7 +113,10 @@ namespace Project
             }
             extracard = deck.pop();
         }
-        
+        public void ThrowTwo()
+        {
+
+        }
 
         
 

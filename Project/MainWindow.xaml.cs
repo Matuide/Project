@@ -132,6 +132,7 @@ namespace Project
             if(c.GetCrib().Count() % 2 == 0)
             {
                 //turn is over --> AI turn()
+                c.ThrowTwo();
             }
         }
 
