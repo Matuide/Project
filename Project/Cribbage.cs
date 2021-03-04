@@ -115,7 +115,30 @@ namespace Project
         }
         public void ThrowTwo()
         {
+            Card r = null;
+            int counter = 0;
+            Card[] temphand = players[1].getHand().gethand();
+            for (int b = 0; b < 6; b++)
+                {
 
+                    
+                    if (temphand[b].tempnumber % 5 != 0)
+                    {
+                        if (counter<2)
+                        {
+                            r = temphand[b];
+                            counter++;
+                            players[1].getHand().RemoveCard(r);
+                            c.addtocrib(r);
+                        }
+
+                    }
+                        
+                }
+             
+            
+            
+            
         }
 
         
