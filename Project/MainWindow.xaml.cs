@@ -43,8 +43,8 @@ namespace Project
             play.Visibility = Visibility.Hidden;
             c.startround();
             ShowHand();
-           
-            
+
+
 
 
 
@@ -55,14 +55,14 @@ namespace Project
             Player p = c.getPlayer(0);
             Player ai = c.getPlayer(1);
             int dis = 0;
-            
-            foreach(Card card in p.ReturnHand())
+
+            foreach (Card card in p.ReturnHand())
             {
                 CreateCard(card.number, card.suit, card, dis, true);
                 dis++;
             }
             dis = 0;
-            foreach (Card card in p.ReturnHand())
+            foreach (Card card in ai.ReturnHand())
             {
                 CreateCard(card.number, card.suit, card, dis, false);
                 dis++;
@@ -73,19 +73,23 @@ namespace Project
         void CreateCard(int num, int suit, Card crd, int offset, bool human)
         {
             Button card = new Button();
-            
+
             card.Height = 80;
             card.Width = 56;
             Image img = new Image();
+            Image imag = new Image();
+            BitmapImage bean = new BitmapImage(new Uri("purple_back.jpg", UriKind.Relative));
             BitmapImage bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
             //might want to change this format
             card.Name = "C" + Convert.ToString(num) + Convert.ToString(suit);
-            
+
             img.Width = 100;
             img.Height = 80;
             img.Source = bitm;
-            
-            if(human)
+            imag.Source = bean;
+            imag.Width = 100;
+            imag.Height = 80;
+            if (human)
             {
                 card.Content = img;
                 card.Click += Card_Click;
@@ -98,12 +102,12 @@ namespace Project
             else
             {
                 img.Visibility = Visibility.Visible;
-                Connect4_Board.Children.Add(img);
-                Grid.SetColumn(img,offset);
-                Grid.SetRow(img,0);
-                AIHand[offset] = img;
+                Connect4_Board.Children.Add(imag);
+                Grid.SetColumn(imag, offset);
+                Grid.SetRow(imag, 0);
+                AIHand[offset] = imag;
             }
-                
+
         }
         void updateBoard()
         {
@@ -116,7 +120,7 @@ namespace Project
         {
             Button tempCard = sender as Button;
             Card card = null;
-            foreach(Card temp in c.getPlayer(0).getHand().gethand())
+            foreach (Card temp in c.getPlayer(0).getHand().gethand())
             {
                 if (temp != null)
                 {
@@ -129,11 +133,17 @@ namespace Project
             }
             tempCard.Visibility = Visibility.Hidden;
             c.playerClickCard(card);
-            if(c.GetCrib().Count() % 2 == 0)
+            int count = 0;
+            if (count == 0)
             {
-                //turn is over --> AI turn()
-                c.ThrowTwo();
+                if (c.GetCrib().Count() % 2 == 0)
+                {
+                    //turn is over --> AI turn()
+                    c.ThrowTwo();
+                    count++;
+                }
             }
+
         }
 
     }
