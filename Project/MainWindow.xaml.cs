@@ -101,7 +101,6 @@ namespace Project
             }
             else
             {
-                img.Visibility = Visibility.Visible;
                 Connect4_Board.Children.Add(imag);
                 Grid.SetColumn(imag, offset);
                 Grid.SetRow(imag, 0);
@@ -136,10 +135,11 @@ namespace Project
             int count = 0;
             if (count == 0)
             {
-                if (c.GetCrib().Count() % 2 == 0)
+                if (c.getPlayer(0).getHand().Count() % 2 == 0)
                 {
                     //turn is over --> AI turn()
                     c.ThrowTwo();
+
                     count++;
                 }
             }

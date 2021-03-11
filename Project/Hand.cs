@@ -43,11 +43,27 @@ namespace Project
         {
             hand[counter] = c;
             
-            
+            if (counter <5)
+            {
                 counter++;
+            }
+                
             
         
             
+        }
+
+        public int Count()
+        {
+            int counter = 0;
+            foreach (Card crd in hand)
+            {
+                if(crd != null)
+                {
+                    counter++;
+                }
+            }
+            return counter;
         }
         public Card[] gethand()
         {
@@ -59,9 +75,10 @@ namespace Project
         {
             return extra;
         }
-        public void addextra(Card d)
+        public void addextra()
         {
-            extra = d;
+            
+            addCard(extra);
         }
 
         private Card getCard(int index)
