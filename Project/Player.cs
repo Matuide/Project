@@ -8,7 +8,7 @@ namespace Project
 {
      abstract class Player
     {
-        private Hand hand;
+        protected Hand hand;
         private int points;
        // private Card extra;
         public Player()
@@ -17,7 +17,7 @@ namespace Project
 
             
         }
-        abstract public int move();
+        abstract public Card move();
         public Card removecard()
         {
             return hand.remove();

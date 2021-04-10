@@ -43,8 +43,7 @@ namespace Project
             play.Visibility = Visibility.Hidden;
             c.startround();
             ShowHand();
-
-
+            c.GetPile().Push(c.getDeck().pop());
 
 
 
@@ -54,20 +53,27 @@ namespace Project
         {
             Player p = c.getPlayer(0);
             Player ai = c.getPlayer(1);
-            int dis = 0;
+            int counter = 0;
+
+            Connect4_Board.Children.Clear();
 
             foreach (Card card in p.ReturnHand())
             {
-                CreateCard(card.number, card.suit, card, dis, true);
-                dis++;
+                if (card != null) 
+                { 
+                    CreateCard(card.number, card.suit, card, counter, true);
+                    counter++;
+                }
             }
-            dis = 0;
+            counter = 0;
             foreach (Card card in ai.ReturnHand())
             {
-                CreateCard(card.number, card.suit, card, dis, false);
-                dis++;
+                if (card != null)
+                {
+                    CreateCard(card.number, card.suit, card, counter, false);
+                    counter++;
+                }
             }
-
         }
 
         void CreateCard(int num, int suit, Card crd, int offset, bool human)
@@ -108,11 +114,6 @@ namespace Project
             }
 
         }
-        void updateBoard()
-        {
-
-
-        }
 
 
         void Card_Click(object sender, RoutedEventArgs e)
@@ -132,18 +133,78 @@ namespace Project
             }
             tempCard.Visibility = Visibility.Hidden;
             c.playerClickCard(card);
-            int count = 0;
-            if (count == 0)
-            {
-                if (c.getPlayer(0).getHand().Count() % 2 == 0)
-                {
-                    //turn is over --> AI turn()
-                    c.ThrowTwo();
 
+            //if the player has thrown 2 cards away then let them play
+            if(c.getPlayer(0).getHand().Count() > 3)
+            {
+                c.ThrowOne();
+                ShowHand();
+                //shows starter card
+                if(c.getPlayer(0).getHand().Count() < 5)
+                {
+                    RenderPile();
+                }
+            }
+            else
+            {
+                c.GetPile().Push(card);
+                c.GetPile().Push(c.getPlayer(1).move());
+                ShowHand();
+                RenderPile();
+            }
+
+            if(c.getPlayer(0).getHand().Count() == 0)
+            {
+                CountTotalPoints();
+
+            }
+        }
+
+        void CountTotalPoints()
+        {
+            Card[] pile = c.GetPile().GetArray();
+            Card[] humanHand = new Card[] {pile[0],pile[1],pile[3],pile[5],pile[7]};
+            Card[] AIHand = new Card[] {pile[0], pile[2], pile[4], pile[6], pile[8] };
+            int humanScore, aiScore;
+            humanScore = c.getPlayer(0).getHand().CountPoints(humanHand);
+            aiScore = c.getPlayer(0).getHand().CountPoints(AIHand);
+            MessageBox.Show("round 1 done");
+            if(aiScore > humanScore)
+            {
+                MessageBox.Show("AI wins rnd 1");
+            }
+            else
+            {
+                MessageBox.Show("Human wins rnd 1");
+            }
+
+        }
+
+        void RenderPile()
+        {
+            int count = 0;
+            foreach (Card crd in c.GetPile().GetArray())
+            {
+                if (crd != null)
+                {
+                    Button card = new Button();
+                    BitmapImage bitm;
+                    Image img = new Image();
+                    card.Height = 80;
+                    card.Width = 56;
+                    bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
+                    img.Width = 100;
+                    img.Height = 80;
+                    img.Source = bitm;
+
+                    card.Content = img;
+                    card.Visibility = Visibility.Visible;
+                    Connect4_Board.Children.Add(card);
+                    Grid.SetColumn(card, count);
+                    Grid.SetRow(card, 2);
                     count++;
                 }
             }
-
         }
 
     }

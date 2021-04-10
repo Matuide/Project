@@ -8,9 +8,9 @@ namespace Project
 {
     class HumanPlayer:Player
     {
-        public override int move()
+        public override Card move()
         {
-            return 1;
+            return null;
         }
 
 

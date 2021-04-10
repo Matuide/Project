@@ -10,11 +10,30 @@ namespace Project
     class Pile
     {
         private Card[] pile;
-        private int size;
+        private const int size = 9;
+        private int top;
         public Pile()
         {
             pile = new Card[size];
+            top = -1;
         }
-        
+        public void Push(Card c)
+        {
+            top++;
+            pile[top] = c;
+        }
+        public Card[] GetArray()
+        {
+            return pile;
+        }
+        public Card peek()
+        {
+            return pile[top];
+        }
+        public Card Pop()
+        {
+            top--;
+            return pile[top+1];
+        }
     }
 }

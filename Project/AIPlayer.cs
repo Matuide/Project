@@ -8,9 +8,20 @@ namespace Project
 {
     class AIPlayer : Player
     {
-      override public int move()
+      override public Card move()
         {
-            return 1;
+            bool played = false;
+            Card crd = null;
+            foreach(Card cr in hand.gethand())
+            {
+                if(cr != null && !played)
+                {
+                    played = true;
+                    crd = cr;
+                    hand.RemoveCard(cr);
+                }
+            }
+            return crd;
         }
         
 

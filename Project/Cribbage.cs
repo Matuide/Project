@@ -12,6 +12,7 @@ namespace Project
         private Card extracard;
         private Player[] players = new Player[2];
         private Crib c;
+        private Pile pile;
 
         public Cribbage()
         {
@@ -20,6 +21,8 @@ namespace Project
             players[1] = new AIPlayer();
 
             c = new Crib();
+
+            pile = new Pile();
 
         }
 
@@ -31,6 +34,11 @@ namespace Project
         public Crib GetCrib()
         {
             return c;
+        }
+
+        public Pile GetPile()
+        {
+            return pile;
         }
 
         public Player getPlayer(int number)
@@ -113,7 +121,7 @@ namespace Project
             }
             extracard = deck.pop();
         }
-        public void ThrowTwo()
+        public void ThrowOne()
         {
             Card r = null;
             int counter = 0;
@@ -125,7 +133,7 @@ namespace Project
                 {
                     if (temphand[b].tempnumber % 5 != 0)
                     {
-                        if (counter < 2)
+                        if (counter < 1)
                         {
                             r = temphand[b];
                             counter++;

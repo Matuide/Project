@@ -100,20 +100,18 @@ namespace Project
             hand[index] = c;
 
         }
-        private int CountPoints(Card[] hand)
+        public int CountPoints(Card[] hnd)
         {
-
             int count = 0;
-
             int points = 0;
-            addCard(extra);
+            extra = hnd[0];
             //first to check for flush
             for (int b = 1; b < 5; b++)
             {
                 count = 0;
                 for (int a = 0; a < 5; a++)
                 {
-                    if (hand[a].suit == b)
+                    if (hnd[a].suit == b)
                     {
                         count++;
                     }
@@ -137,7 +135,7 @@ namespace Project
                 firstnumber = c;
                 for (int d = 0; d < 5; d++)
                 {
-                    if (hand[d].number == firstnumber)
+                    if (hnd[d].number == firstnumber)
                     {
                         count++;
                     }
@@ -175,7 +173,7 @@ namespace Project
 
                 for (int a = 0; a < 5; a++)
                 {
-                    if (hand[a].number == l)
+                    if (hnd[a].number == l)
                     {
                         tempcount = tempcount + 1;
                     }
@@ -187,7 +185,7 @@ namespace Project
                         run = false;
                         for (int b = 0; b < 5; b++)
                         {
-                            if (hand[b].number == c + 1)
+                            if (hnd[b].number == c + 1)
                             {
                                 temp1++;
                                 run = true;
@@ -202,7 +200,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hand[b].number == c + 2)
+                                if (hnd[b].number == c + 2)
                                 {
                                     temp2++;
                                     run = true;
@@ -218,7 +216,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hand[b].number == c + 3)
+                                if (hnd[b].number == c + 3)
                                 {
                                     temp3++;
                                     run = true;
@@ -235,7 +233,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hand[b].number == c + 4)
+                                if (hnd[b].number == c + 4)
                                 {
                                     temp4++;
                                     run = true;
@@ -279,7 +277,7 @@ namespace Project
             {
                 for (int j = 1 + i; j < 5; j++)
                 {
-                    if (hand[i].tempnumber + hand[j].tempnumber == 15)
+                    if (hnd[i].tempnumber + hnd[j].tempnumber == 15)
                     {
                         points = points + 2;
                     }
@@ -292,7 +290,7 @@ namespace Project
                 {
                     for (int a3 = 1 + a2; a3 < 5; a3++)
                     {
-                        if (hand[a1].tempnumber + hand[a2].tempnumber + hand[a3].tempnumber == 15)
+                        if (hnd[a1].tempnumber + hnd[a2].tempnumber + hnd[a3].tempnumber == 15)
                         {
                             points = points = 2;
                         }
@@ -302,7 +300,7 @@ namespace Project
             //then check all possibilities of 4 cards
             for (int g = 0; g < 5; g++)
             {
-                if (hand[0].tempnumber + hand[1].tempnumber + hand[2].tempnumber + hand[3].tempnumber + hand[4].tempnumber - hand[g].tempnumber == 15)
+                if (hnd[0].tempnumber + hnd[1].tempnumber + hnd[2].tempnumber + hnd[3].tempnumber + hnd[4].tempnumber - hnd[g].tempnumber == 15)
                 {
                     points = points + 2;
                 }
@@ -311,7 +309,7 @@ namespace Project
 
             for (int z = 0; z < 5; z++)
             {
-                count = count + hand[z].number;
+                count = count + hnd[z].number;
             }
             if (count == 15)
             {
@@ -321,16 +319,16 @@ namespace Project
             //finally to checks for nobs
             for (int n = 0; n < 5; n++)
             {
-                if (hand[n].suit == extra.suit)
+                if (hnd[n].suit == extra.suit)
                 {
-                    if (hand[n].number == 11)
+                    if (hnd[n].number == 11)
                     {
                         points++;
                     }
 
                 }
             }
-            hand[4] = null;
+            hnd[4] = null;
             counter = 3;
             return points;
         }

@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid Name="GridPanel" Background="black" Width="800" Height="420"  
    VerticalAlignment="Top" HorizontalAlignment="Center" >
+		<Canvas Name="PileCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid Name="Connect4_Board" Margin="20" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -17,20 +18,20 @@
                 <RowDefinition Height="1*"/>
                
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard1" Grid.Column="0"/>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+				<ColumnDefinition Width="1*"/>
+			</Grid.ColumnDefinitions>
+			<Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard1" Grid.Column="0"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard2" Grid.Column="2"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard3" Grid.Column="4"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard4" Grid.Column="6"/>
