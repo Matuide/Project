@@ -102,14 +102,15 @@ namespace Project
         }
         private Card[] SortHand(Card [] handtosort)
         {
-
-            return handtosort;
+            return mergeSort(handtosort);
         }
+
+
         public int CountPoints(Card[] hnd)
         {
             hnd = SortHand(hnd);
             int count = 0;
-
+            bool running;
             int points = 0;
             //extra = hnd[0];
             //first to check for flush
@@ -161,6 +162,29 @@ namespace Project
                 }
             }
             //next to check for runs
+
+            for(int i = 0; i < hnd.Length; i++)
+            {
+                running = true;
+                counter = 1;
+                for (int j = 1; j < hnd.Length; j++)
+                {
+                    if (i + j <= hnd.Length - 1 && hnd[i] != null && hnd[i + j] != null && hnd[i].number == hnd[i + j].number - j && running)
+                    {
+                        counter++;
+                    }
+                    else
+                    {
+                        running = false;
+                    }
+                }
+                if(counter > 2)
+                {
+                    i += counter;
+                    points += counter;
+                }
+
+            }
             
 
             //next to check for 15s
@@ -227,6 +251,77 @@ namespace Project
             hnd[4] = null;
             counter = 3;
             return points;
+        }
+        public static Card[] mergeSort(Card[] array)
+        {
+            Card[] left;
+            Card[] right;
+            Card[] result = new Card[array.Length];
+            int temp = 0;
+
+            if (array.Length <= 1)
+                return array;
+            int centre = array.Length / 2;
+            left = new Card[centre];
+
+            if (array.Length % 2 == 0)
+                right = new Card[centre];
+            else
+                right = new Card[centre + 1];
+            for (int i = 0; i < centre; i++)
+                left[i] = array[i];
+            for (int i = centre; i < array.Length; i++)
+            {
+                right[temp] = array[i];
+                temp++;
+            }
+          
+            left = mergeSort(left);
+            
+            right = mergeSort(right);
+           
+            result = merge(left, right);
+            return result;
+        }
+
+        public static Card[] merge(Card[] left, Card[] right)
+        {
+            int resultLength = right.Length + left.Length;
+            Card[] result = new Card[resultLength];
+        
+            int indL = 0, indR = 0, indD = 0;
+            
+            while (indL < left.Length || indR < right.Length)
+            {
+                if (indL < left.Length && indR < right.Length)
+                { 
+                    if (left[indL].number <= right[indR].number)
+                    {
+                        result[indD] = left[indL];
+                        indL++;
+                        indD++;
+                    }
+                    else
+                    {
+                        result[indD] = right[indR];
+                        indR++;
+                        indD++;
+                    }
+                }
+                else if (indL < left.Length)
+                {
+                    result[indD] = left[indL];
+                    indL++;
+                    indD++;
+                }
+                else if (indR < right.Length)
+                {
+                    result[indD] = right[indR];
+                    indR++;
+                    indD++;
+                }
+            }
+            return result;
         }
 
     }
