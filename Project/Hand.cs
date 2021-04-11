@@ -100,11 +100,18 @@ namespace Project
             hand[index] = c;
 
         }
+        private Card[] SortHand(Card [] handtosort)
+        {
+
+            return handtosort;
+        }
         public int CountPoints(Card[] hnd)
         {
+            hnd = SortHand(hnd);
             int count = 0;
+
             int points = 0;
-            extra = hnd[0];
+            //extra = hnd[0];
             //first to check for flush
             for (int b = 1; b < 5; b++)
             {
@@ -154,119 +161,7 @@ namespace Project
                 }
             }
             //next to check for runs
-            int tempcount;
-            int temp1;
-            int temp2;
-            int temp3;
-            int temp4;
-            int runlength = 0;
-            bool run;
-            count = 0;
-            for (int l = 1; l < 11; l++)
-            {
-                tempcount = 0;
-                temp1 = 0;
-                temp2 = 0;
-                temp3 = 0;
-                temp4 = 0;
-                int c = l;
-
-                for (int a = 0; a < 5; a++)
-                {
-                    if (hnd[a] != null && hnd[a].number == l)
-                    {
-                        tempcount = tempcount + 1;
-                    }
-                }
-                if (tempcount > 0)
-                {
-                    do
-                    {
-                        run = false;
-                        for (int b = 0; b < 5; b++)
-                        {
-                            if (hnd[b] != null && hnd[b].number == c + 1)
-                            {
-                                temp1++;
-                                run = true;
-                            }
-                            if (run)
-                            {
-                                runlength++;
-                            }
-                        }
-                        run = false;
-                        if (runlength == 2)
-                        {
-                            for (int b = 0; b < 5; b++)
-                            {
-                                if (hnd[b] != null && hnd[b].number == c + 2)
-                                {
-                                    temp2++;
-                                    run = true;
-                                }
-                                if (run)
-                                {
-                                    runlength++;
-                                }
-                            }
-                        }
-                        run = false;
-                        if (runlength == 3)
-                        {
-                            for (int b = 0; b < 5; b++)
-                            {
-                                if (hnd[b] != null && hnd[b].number == c + 3)
-                                {
-                                    temp3++;
-                                    run = true;
-                                }
-                                if (run)
-                                {
-                                    runlength++;
-                                }
-                            }
-                        }
-
-                        run = false;
-                        if (runlength == 4)
-                        {
-                            for (int b = 0; b < 5; b++)
-                            {
-                                if (hnd[b] != null && hnd[b].number == c + 4)
-                                {
-                                    temp4++;
-                                    run = true;
-                                }
-                                if (run)
-                                {
-                                    runlength++;
-                                }
-                            }
-                        }
-
-
-                    } while (run);
-                    if (runlength == 4)
-                    {
-                        l++;
-                    }
-                    if (runlength == 3)
-                    {
-                        points = points + (runlength * tempcount * temp1 * temp2);
-                    }
-                    if (runlength == 4)
-                    {
-                        points = points + (runlength * tempcount * temp1 * temp2 * temp3);
-                    }
-                    if (runlength == 5)
-                    {
-                        points = points + 5;
-                    }
-                }
-
-
-            }
+            
 
             //next to check for 15s
 

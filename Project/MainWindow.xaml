@@ -8,7 +8,7 @@
         Title="MainWindow" Height="900" Width="1600">
     <Grid Name="GridPanel" Background="green" Width="900" Height="840"  
    VerticalAlignment="Top" HorizontalAlignment="Center" >
-		<Canvas Name="PileCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Canvas Name="PileCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid Name="Connect4_Board" Margin="20" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
@@ -16,28 +16,28 @@
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
-               
+
             </Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-				<ColumnDefinition Width="1*"/>
-			</Grid.ColumnDefinitions>
-			<Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard1" Grid.Column="0"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard1" Grid.Column="0"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard2" Grid.Column="2"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard3" Grid.Column="4"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard4" Grid.Column="6"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard5" Grid.Column="8"/>
-			<Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard6" Grid.Column="10"/>
-			<!--<Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard7"  Grid.Column="0"/>
+            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard6" Grid.Column="10"/>
+            <!--<Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard7"  Grid.Column="0"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard8" Grid.Column="2"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard9" Grid.Column="4"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard10" Grid.Column="6"/>
@@ -61,10 +61,12 @@
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card7" Grid.Column="7"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card8" Grid.Column="8"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="Card9" Grid.Column="9"/>
+            <TextBox Grid.ColumnSpan="5" Name="Instructions" Grid.Column="3" HorizontalAlignment="Left" Height="160" Margin="34,141,0,0" Grid.Row="3" Grid.RowSpan="2" TextWrapping="Wrap" Text="Each round you will be given 6 cards" VerticalAlignment="Top" Width="300"/>
         </Grid>
 
 
-        <Button Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="365,181,0,0" Click="Button_Click"/>
-        
+        <Button Name="play" Content="Play Game" HorizontalAlignment="Left" VerticalAlignment="Top" Width="75" Margin="400,360,0,0" Click="Button_Click"/>
+        <Button Name="Instruction" Content="How to Play" HorizontalAlignment="Left" Margin="400,440,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_1"/>
+
     </Grid>
 </Window>

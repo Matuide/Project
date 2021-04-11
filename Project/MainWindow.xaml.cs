@@ -22,19 +22,20 @@ namespace Project
     {
         Cribbage c;
 
+
         Button[] humansHand = new Button[6];
         Image[] AIHand = new Image[6];
         int humanPts, aiPts;
         Label AIPTS;
         Label HUMANPTS;
-        //Crib crib;
+       
 
 
         public MainWindow()
         {
             InitializeComponent();
+            Instructions.Visibility = Visibility.Hidden;
 
-            //AICards = new Image[] { AICard1, AICard2, AICard3, AICard4, AICard5, AICard6 };
             aiPts = 0;
             humanPts = 0;
             c = new Cribbage();
@@ -55,6 +56,7 @@ namespace Project
 
             // Turn Off Button
             play.Visibility = Visibility.Hidden;
+            Instruction.Visibility = Visibility.Hidden;
             c.startround();
             ShowHand();
             c.GetPile().Push(c.getDeck().pop());
@@ -105,7 +107,7 @@ namespace Project
             Image imag = new Image();
             BitmapImage bean = new BitmapImage(new Uri("purple_back.jpg", UriKind.Relative));
             BitmapImage bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
-            //might want to change this format
+            
             card.Name = "C" + Convert.ToString(num) + Convert.ToString(suit);
 
             img.Width = 200;
@@ -303,8 +305,13 @@ namespace Project
             }
 
             Hand[4] = c.GetPile().GetArray()[0];
-            score = c.getPlayer(0).getHand().CountPoints(Hand);
+            score = c.getPlayer(p).getHand().CountPoints(Hand);
             return score;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Instructions.Visibility = Visibility.Visible;
         }
 
         void RenderPile()
