@@ -10,7 +10,7 @@ namespace Project
     class Pile
     {
         private Card[] pile;
-        private const int size = 9;
+        private const int size = 20;
         private int top;
         public Pile()
         {
@@ -34,6 +34,11 @@ namespace Project
         {
             top--;
             return pile[top+1];
+        }
+        public void Remove()
+        {
+            pile[top] = null;
+            top--;
         }
     }
 }

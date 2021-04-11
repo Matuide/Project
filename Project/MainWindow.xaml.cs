@@ -24,6 +24,9 @@ namespace Project
 
         Button[] humansHand = new Button[6];
         Image[] AIHand = new Image[6];
+        int humanPts, aiPts;
+        Label AIPTS;
+        Label HUMANPTS;
         //Crib crib;
 
 
@@ -32,8 +35,19 @@ namespace Project
             InitializeComponent();
 
             //AICards = new Image[] { AICard1, AICard2, AICard3, AICard4, AICard5, AICard6 };
-
+            aiPts = 0;
+            humanPts = 0;
             c = new Cribbage();
+            HUMANPTS = new Label();
+            AIPTS = new Label();
+            HUMANPTS.VerticalAlignment = VerticalAlignment.Bottom;
+            HUMANPTS.HorizontalAlignment = HorizontalAlignment.Right;
+            AIPTS.VerticalAlignment = VerticalAlignment.Top;
+            AIPTS.HorizontalAlignment = HorizontalAlignment.Right;
+            AIPTS.Foreground = new SolidColorBrush(Colors.White);
+            HUMANPTS.Foreground = new SolidColorBrush(Colors.White);
+            GridPanel.Children.Add(HUMANPTS);
+            GridPanel.Children.Add(AIPTS);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -44,9 +58,14 @@ namespace Project
             c.startround();
             ShowHand();
             c.GetPile().Push(c.getDeck().pop());
+        }
 
-
-
+        void Restart()
+        {
+            c = new Cribbage();
+            c.startround();
+            ShowHand();
+            c.GetPile().Push(c.getDeck().pop());
         }
 
         void ShowHand()
@@ -59,8 +78,8 @@ namespace Project
 
             foreach (Card card in p.ReturnHand())
             {
-                if (card != null) 
-                { 
+                if (card != null)
+                {
                     CreateCard(card.number, card.suit, card, counter, true);
                     counter++;
                 }
@@ -80,8 +99,8 @@ namespace Project
         {
             Button card = new Button();
 
-            card.Height = 80;
-            card.Width = 56;
+            card.Height = 160;
+            card.Width = 112;
             Image img = new Image();
             Image imag = new Image();
             BitmapImage bean = new BitmapImage(new Uri("purple_back.jpg", UriKind.Relative));
@@ -89,12 +108,12 @@ namespace Project
             //might want to change this format
             card.Name = "C" + Convert.ToString(num) + Convert.ToString(suit);
 
-            img.Width = 100;
-            img.Height = 80;
+            img.Width = 200;
+            img.Height = 160;
             img.Source = bitm;
             imag.Source = bean;
-            imag.Width = 100;
-            imag.Height = 80;
+            imag.Width = 200;
+            imag.Height = 160;
             if (human)
             {
                 card.Content = img;
@@ -120,6 +139,7 @@ namespace Project
         {
             Button tempCard = sender as Button;
             Card card = null;
+            bool loop = true;
             foreach (Card temp in c.getPlayer(0).getHand().gethand())
             {
                 if (temp != null)
@@ -131,53 +151,160 @@ namespace Project
                     }
                 }
             }
-            tempCard.Visibility = Visibility.Hidden;
-            c.playerClickCard(card);
-
-            //if the player has thrown 2 cards away then let them play
-            if(c.getPlayer(0).getHand().Count() > 3)
+            if (CheckPile())
             {
-                c.ThrowOne();
-                ShowHand();
-                //shows starter card
-                if(c.getPlayer(0).getHand().Count() < 5)
+                if (CheckCards(card))
                 {
+                    tempCard.Visibility = Visibility.Hidden;
+                    c.playerClickCard(card);
+                
+                    //if the player has thrown 2 cards away then let them play
+                    if (c.getPlayer(0).getHand().Count() > 3)
+                    {
+                        c.ThrowOne();
+                        ShowHand();
+                        //shows starter card
+                        if (c.getPlayer(0).getHand().Count() < 5)
+                        {
+                            RenderPile();
+                            humanPts += CountPlayerPoints(0);
+                            aiPts += CountPlayerPoints(1);
+                        }
+                    }
+                    else
+                    {
+                        c.GetPile().Push(card);
+                        if(CardPlace(1))
+                            c.GetPile().Push(c.getPlayer(1).move());
+                        ShowHand();
+                        RenderPile();
+                        Console.WriteLine(Convert.ToString(aiPts + humanPts));
+
+                        HUMANPTS.Content = Convert.ToString(humanPts);
+                        AIPTS.Content = Convert.ToString(aiPts);
+                        if (humanPts >= 121)
+                        {
+                            MessageBox.Show("Human wins");
+                        }
+                        else if (aiPts >= 121)
+                        {
+                            MessageBox.Show("AI wins");
+                        }
+                    }
+                }
+                else if(!CardPlace(1) && !CardPlace(0))
+                {
+                    for(int i = 1; i < c.GetPile().GetArray().Length; i++)
+                    {
+                        c.GetPile().GetArray()[i] = null;
+                    }
+                }
+                else if (!CardPlace(0) && CardPlace(1))
+                {
+                    c.GetPile().Push(c.getPlayer(1).move());
+                    ShowHand();
                     RenderPile();
+                }
+                while(c.getPlayer(0).getHand().Count() == 0 && loop)
+                {
+                    if (c.getPlayer(1).getHand().Count() == 0)
+                    {
+                        Restart();
+                        loop = false;
+                    }
+                    else
+                    {
+                        c.GetPile().Push(c.getPlayer(1).move());
+                        ShowHand();
+                        RenderPile();
+                    }
                 }
             }
             else
             {
-                c.GetPile().Push(card);
-                c.GetPile().Push(c.getPlayer(1).move());
-                ShowHand();
-                RenderPile();
+                Restart();
             }
 
-            if(c.getPlayer(0).getHand().Count() == 0)
-            {
-                CountTotalPoints();
-
-            }
         }
 
-        void CountTotalPoints()
+        bool CardPlace(int p)
         {
-            Card[] pile = c.GetPile().GetArray();
-            Card[] humanHand = new Card[] {pile[0],pile[1],pile[3],pile[5],pile[7]};
-            Card[] AIHand = new Card[] {pile[0], pile[2], pile[4], pile[6], pile[8] };
-            int humanScore, aiScore;
-            humanScore = c.getPlayer(0).getHand().CountPoints(humanHand);
-            aiScore = c.getPlayer(0).getHand().CountPoints(AIHand);
-            MessageBox.Show("round 1 done");
-            if(aiScore > humanScore)
+            bool place = false;
+            if (p == 0)
             {
-                MessageBox.Show("AI wins rnd 1");
+                foreach (Card crd in c.getPlayer(0).getHand().gethand())
+                {
+                    if (crd != null && CheckCards(crd))
+                    {
+                        place = true;
+                    }
+                }
             }
-            else
+            if (p == 1)
             {
-                MessageBox.Show("Human wins rnd 1");
+                foreach (Card crd in c.getPlayer(1).getHand().gethand())
+                {
+                    if (crd != null && CheckCards(crd))
+                    {
+                        place = true;
+                    }
+                }
+            }
+            return place;
+        }
+
+
+        bool CheckCards(Card cr)
+        {
+            bool check = true;
+            c.GetPile().Push(cr);
+            if (CountScore(c.GetPile().GetArray()) > 31)
+            {
+                check = false;
+            }
+            c.GetPile().Remove();
+            return check;
+        }
+        bool CheckPile()
+        {
+            bool check = true;
+            if (CountScore(c.GetPile().GetArray()) > 31)
+            {
+                check = false;
+            }
+            return check;
+        }
+
+        int CountScore(Card[] bean)
+        {
+            int spoon = 0, bread = 0;
+            foreach (Card mules in bean)
+            {
+                if (mules != null && bread > 0)
+                    spoon += mules.tempnumber;
+                bread++;
+            }
+            return spoon;
+        }
+
+        int CountPlayerPoints(int p)
+        {
+            Card[] Hand = new Card[5];
+            int score;
+            int counter = 0;
+
+            foreach (Card crd in c.getPlayer(p).getHand().gethand())
+            {
+                if(crd != null)
+                {
+                    Hand[counter] = crd;
+                    counter++;
+                }
             }
 
+            Hand[4] = c.GetPile().GetArray()[0];
+            score = c.getPlayer(0).getHand().CountPoints(Hand);
+            return score;
         }
 
         void RenderPile()
@@ -190,11 +317,11 @@ namespace Project
                     Button card = new Button();
                     BitmapImage bitm;
                     Image img = new Image();
-                    card.Height = 80;
-                    card.Width = 56;
+                    card.Height = 160;
+                    card.Width = 112;
                     bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
-                    img.Width = 100;
-                    img.Height = 80;
+                    img.Width = 200;
+                    img.Height = 160;
                     img.Source = bitm;
 
                     card.Content = img;

@@ -111,7 +111,7 @@ namespace Project
                 count = 0;
                 for (int a = 0; a < 5; a++)
                 {
-                    if (hnd[a].suit == b)
+                    if (hnd[a] != null && hnd[a].suit == b)
                     {
                         count++;
                     }
@@ -135,7 +135,7 @@ namespace Project
                 firstnumber = c;
                 for (int d = 0; d < 5; d++)
                 {
-                    if (hnd[d].number == firstnumber)
+                    if (hnd[d] != null && hnd[d].number == firstnumber)
                     {
                         count++;
                     }
@@ -173,7 +173,7 @@ namespace Project
 
                 for (int a = 0; a < 5; a++)
                 {
-                    if (hnd[a].number == l)
+                    if (hnd[a] != null && hnd[a].number == l)
                     {
                         tempcount = tempcount + 1;
                     }
@@ -185,7 +185,7 @@ namespace Project
                         run = false;
                         for (int b = 0; b < 5; b++)
                         {
-                            if (hnd[b].number == c + 1)
+                            if (hnd[b] != null && hnd[b].number == c + 1)
                             {
                                 temp1++;
                                 run = true;
@@ -200,7 +200,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hnd[b].number == c + 2)
+                                if (hnd[b] != null && hnd[b].number == c + 2)
                                 {
                                     temp2++;
                                     run = true;
@@ -216,7 +216,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hnd[b].number == c + 3)
+                                if (hnd[b] != null && hnd[b].number == c + 3)
                                 {
                                     temp3++;
                                     run = true;
@@ -233,7 +233,7 @@ namespace Project
                         {
                             for (int b = 0; b < 5; b++)
                             {
-                                if (hnd[b].number == c + 4)
+                                if (hnd[b] != null && hnd[b].number == c + 4)
                                 {
                                     temp4++;
                                     run = true;
@@ -277,7 +277,7 @@ namespace Project
             {
                 for (int j = 1 + i; j < 5; j++)
                 {
-                    if (hnd[i].tempnumber + hnd[j].tempnumber == 15)
+                    if (hnd[j] != null && hnd[i] != null && hnd[i].tempnumber + hnd[j].tempnumber == 15)
                     {
                         points = points + 2;
                     }
@@ -290,7 +290,7 @@ namespace Project
                 {
                     for (int a3 = 1 + a2; a3 < 5; a3++)
                     {
-                        if (hnd[a1].tempnumber + hnd[a2].tempnumber + hnd[a3].tempnumber == 15)
+                        if (hnd[a2] != null && hnd[a3] != null && hnd[a1] != null && hnd[a1].tempnumber + hnd[a2].tempnumber + hnd[a3].tempnumber == 15)
                         {
                             points = points = 2;
                         }
@@ -300,7 +300,7 @@ namespace Project
             //then check all possibilities of 4 cards
             for (int g = 0; g < 5; g++)
             {
-                if (hnd[0].tempnumber + hnd[1].tempnumber + hnd[2].tempnumber + hnd[3].tempnumber + hnd[4].tempnumber - hnd[g].tempnumber == 15)
+                if (hnd[g] != null && hnd[0] != null && hnd[1] != null && hnd[2] != null && hnd[3] != null && hnd[4] != null && hnd[0].tempnumber + hnd[1].tempnumber + hnd[2].tempnumber + hnd[3].tempnumber + hnd[4].tempnumber - hnd[g].tempnumber == 15)
                 {
                     points = points + 2;
                 }
@@ -309,7 +309,8 @@ namespace Project
 
             for (int z = 0; z < 5; z++)
             {
-                count = count + hnd[z].number;
+                if(hnd[z] != null)
+                    count = count + hnd[z].number;
             }
             if (count == 15)
             {
@@ -319,7 +320,7 @@ namespace Project
             //finally to checks for nobs
             for (int n = 0; n < 5; n++)
             {
-                if (hnd[n].suit == extra.suit)
+                if (extra != null && hnd[n] != null && hnd[n].suit == extra.suit)
                 {
                     if (hnd[n].number == 11)
                     {

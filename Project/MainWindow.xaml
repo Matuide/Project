@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Project"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Name="GridPanel" Background="black" Width="800" Height="420"  
+        Title="MainWindow" Height="900" Width="1600">
+    <Grid Name="GridPanel" Background="green" Width="900" Height="840"  
    VerticalAlignment="Top" HorizontalAlignment="Center" >
 		<Canvas Name="PileCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
         <Grid Name="Connect4_Board" Margin="20" Grid.Column="0">
@@ -36,8 +36,8 @@
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard3" Grid.Column="4"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard4" Grid.Column="6"/>
             <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard5" Grid.Column="8"/>
-            <Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard6" Grid.Column="10"/>
-               <!--<Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard7"  Grid.Column="0"/>
+			<Image Grid.Row="0" Width=" 56" Height="80 " Name="AICard6" Grid.Column="10"/>
+			<!--<Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard7"  Grid.Column="0"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard8" Grid.Column="2"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard9" Grid.Column="4"/>
             <Image Grid.Row="5" Width=" 56" Height="80 " Name="HumanCard10" Grid.Column="6"/>
