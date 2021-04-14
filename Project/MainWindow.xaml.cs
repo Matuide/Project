@@ -53,17 +53,17 @@ namespace Project
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            int cribowner = 0;
             // Turn Off Button
             play.Visibility = Visibility.Hidden;
             Instruction.Visibility = Visibility.Hidden;
-            c.startround();
-            ShowHand();
-            c.GetPile().Push(c.getDeck().pop());
+            cribowner = (cribowner+1)% 2;
+            Restart();
         }
 
         void Restart()
         {
+
             c = new Cribbage();
             c.startround();
             ShowHand();
@@ -101,8 +101,8 @@ namespace Project
         {
             Button card = new Button();
 
-            card.Height = 160;
-            card.Width = 112;
+            card.Height = 107;
+            card.Width = 75;
             Image img = new Image();
             Image imag = new Image();
             BitmapImage bean = new BitmapImage(new Uri("purple_back.jpg", UriKind.Relative));
@@ -110,12 +110,12 @@ namespace Project
             
             card.Name = "C" + Convert.ToString(num) + Convert.ToString(suit);
 
-            img.Width = 200;
-            img.Height = 160;
+            img.Width = 133;
+            img.Height = 107;
             img.Source = bitm;
             imag.Source = bean;
-            imag.Width = 200;
-            imag.Height = 160;
+            imag.Width = 133;
+            imag.Height = 107;
             if (human)
             {
                 card.Content = img;

@@ -112,6 +112,7 @@ namespace Project
             int count = 0;
             bool running;
             int points = 0;
+            bool fifteen = false;
             //extra = hnd[0];
             //first to check for flush
             for (int b = 1; b < 5; b++)
@@ -136,65 +137,71 @@ namespace Project
             }
             // next to check for pairs
 
-            int firstnumber;
-            for (int c = 0; c < 13; c++)
+            for (int b = 1; b < 14; b++)
             {
                 count = 0;
-                firstnumber = c;
-                for (int d = 0; d < 5; d++)
+                for (int place = 0; place < 5; place++)
                 {
-                    if (hnd[d] != null && hnd[d].number == firstnumber)
+                    if (hnd[place].number == b)
                     {
                         count++;
                     }
                 }
-                if (count == 2)
+                if (count > 1)
                 {
-                    points = points + 2;
+                    points = points +(count*(count -1));
                 }
-                if (count == 3)
-                {
-                    points = points + 6;
-                }
-                if (count == 4)
-                {
-                    points = points + 12;
-                }
+                
             }
             //next to check for runs
-
-            for(int i = 0; i < hnd.Length; i++)
+            int exponent = 1;
+            for (int i = 0; i < hnd.Length; i++)
             {
                 running = true;
                 counter = 1;
-                for (int j = 1; j < hnd.Length; j++)
+                
+                for (int j = 1; j < hnd.Length+1; j++)
                 {
+                    if (i + j <= hnd.Length - 1 && hnd[i].number == hnd[1 + i].number && hnd[i] != null && hnd[i + j] != null && running)
+                    {
+                        exponent++;
+                        running = true;
+                    }
                     if (i + j <= hnd.Length - 1 && hnd[i] != null && hnd[i + j] != null && hnd[i].number == hnd[i + j].number - j && running)
                     {
                         counter++;
-                    }
-                    else
+                       
+                    }else
                     {
                         running = false;
                     }
+                    
+
+
                 }
                 if(counter > 2)
                 {
-                    i += counter;
-                    points += counter;
+                    i = 4;
+                    
+                }
+                if (counter > 2)
+                {
+                    points += counter * Convert.ToInt32(Math.Pow(Convert.ToDouble(2),Convert.ToDouble(exponent-1)));
                 }
 
             }
             
+                
+
 
             //next to check for 15s
 
 
             count = 0;
             //checking all possibilites of two cards
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < hnd.Length-1; i++)
             {
-                for (int j = 1 + i; j < 5; j++)
+                for (int j = 1 + i; j < hnd.Length-1; j++)
                 {
                     if (hnd[j] != null && hnd[i] != null && hnd[i].tempnumber + hnd[j].tempnumber == 15)
                     {
@@ -203,7 +210,7 @@ namespace Project
                 }
             }
             //then check all possibilities of 3 cards
-            for (int a1 = 0; a1 < 3; a1++)
+            for (int a1 = 0; a1 < hnd.Length-2; a1++)
             {
                 for (int a2 = 1 + a1; a2 < 4; a2++)
                 {
@@ -225,7 +232,7 @@ namespace Project
                 }
             }
             // finally check if all 5 cards add up to 15
-
+            count = 0;
             for (int z = 0; z < 5; z++)
             {
                 if(hnd[z] != null)
@@ -237,9 +244,9 @@ namespace Project
             }
 
             //finally to checks for nobs
-            for (int n = 0; n < 5; n++)
+            for (int n = 0; n < 4; n++)
             {
-                if (extra != null && hnd[n] != null && hnd[n].suit == extra.suit)
+                if (hnd[4] != null && hnd[n] != null && hnd[n].suit == hnd[4].suit)
                 {
                     if (hnd[n].number == 11)
                     {
