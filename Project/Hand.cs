@@ -127,7 +127,7 @@ namespace Project
                 }
                 if (count == 4)
                 {
-                    points = points + 4;
+                    points = points +  4;
                 }
                 else if (count == 5)
                 {
