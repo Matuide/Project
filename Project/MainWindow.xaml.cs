@@ -34,6 +34,7 @@ namespace Project
         public MainWindow()
         {
             InitializeComponent();
+            
             Instructions.Visibility = Visibility.Hidden;
 
             aiPts = 0;
@@ -41,12 +42,15 @@ namespace Project
             c = new Cribbage();
             HUMANPTS = new Label();
             AIPTS = new Label();
+            //describing the position,colour and size of the number in each corner displaying the points
             HUMANPTS.VerticalAlignment = VerticalAlignment.Bottom;
             HUMANPTS.HorizontalAlignment = HorizontalAlignment.Right;
             AIPTS.VerticalAlignment = VerticalAlignment.Top;
             AIPTS.HorizontalAlignment = HorizontalAlignment.Right;
             AIPTS.Foreground = new SolidColorBrush(Colors.White);
             HUMANPTS.Foreground = new SolidColorBrush(Colors.White);
+            HUMANPTS.FontSize = 50;
+            AIPTS.FontSize = 50;
             GridPanel.Children.Add(HUMANPTS);
             GridPanel.Children.Add(AIPTS);
         }
@@ -54,10 +58,11 @@ namespace Project
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int cribowner = 0;
-            // Turn Off Button
+            // Turn Off Buttons 
             play.Visibility = Visibility.Hidden;
             Instruction.Visibility = Visibility.Hidden;
             cribowner = (cribowner+1)% 2;
+
             Restart();
         }
 
@@ -76,10 +81,11 @@ namespace Project
             Player ai = c.getPlayer(1);
             int counter = 0;
 
-            Connect4_Board.Children.Clear();
+            Cribbage_Board.Children.Clear();
 
             foreach (Card card in p.ReturnHand())
             {
+                //get each card from the player's hand and put them on the UI
                 if (card != null)
                 {
                     CreateCard(card.number, card.suit, card, counter, true);
@@ -89,6 +95,7 @@ namespace Project
             counter = 0;
             foreach (Card card in ai.ReturnHand())
             {
+                
                 if (card != null)
                 {
                     CreateCard(card.number, card.suit, card, counter, false);
@@ -100,11 +107,14 @@ namespace Project
         void CreateCard(int num, int suit, Card crd, int offset, bool human)
         {
             Button card = new Button();
-
+            //set button sizes according to ration of size of real playing cards
             card.Height = 107;
             card.Width = 75;
             Image img = new Image();
             Image imag = new Image();
+            //As the player is not supposed to see what cards the AI has
+            //this just displays the back of a card picture of colour purple because thats the colour
+            //that Charlie thought was best
             BitmapImage bean = new BitmapImage(new Uri("purple_back.jpg", UriKind.Relative));
             BitmapImage bitm = new BitmapImage(new Uri(crd.getName() + ".jpg", UriKind.Relative));
             
@@ -121,14 +131,14 @@ namespace Project
                 card.Content = img;
                 card.Click += Card_Click;
                 card.Visibility = Visibility.Visible;
-                Connect4_Board.Children.Add(card);
+                Cribbage_Board.Children.Add(card);
                 Grid.SetColumn(card, offset);
                 Grid.SetRow(card, 4);
                 humansHand[offset] = card;
             }
             else
             {
-                Connect4_Board.Children.Add(imag);
+                Cribbage_Board.Children.Add(imag);
                 Grid.SetColumn(imag, offset);
                 Grid.SetRow(imag, 0);
                 AIHand[offset] = imag;
@@ -333,7 +343,7 @@ namespace Project
 
                     card.Content = img;
                     card.Visibility = Visibility.Visible;
-                    Connect4_Board.Children.Add(card);
+                    Cribbage_Board.Children.Add(card);
                     Grid.SetColumn(card, count);
                     Grid.SetRow(card, 2);
                     count++;

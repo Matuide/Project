@@ -13,13 +13,17 @@ namespace Project
         private Card extra;
         public Hand()
         {
-            hand = new Card[6];
+            //hand is a simple array of card elements of max length 6
+            const int MAXLENGTH = 6;
+            hand = new Card[MAXLENGTH];
             counter = 0;
         }
         
 
         public Card remove()
         {
+            //returns the top card of the hand, this is only used when replacing the cards at the end of each round, 
+            //otherwise an input parameter position would be needed
             counter = counter - 1;
             Card c = hand[counter];
             hand[counter] = null;
@@ -30,6 +34,7 @@ namespace Project
 
         public void RemoveCard(Card c)
         {
+            //deletes the card c if it is in the hand
             for(int i = 0; i < hand.Length; i++)
             {
                 if(hand[i] != null && c.getName() == hand[i].getName())
@@ -55,6 +60,7 @@ namespace Project
 
         public int Count()
         {
+            //counts the number of cards remaining in the hand so UI knows if to ask for another one to be thrown away
             int counter = 0;
             foreach (Card crd in hand)
             {
@@ -77,11 +83,11 @@ namespace Project
         }
         public void addextra()
         {
-            
+            //adding the extra card to the hand so it can be counted
             addCard(extra);
         }
 
-        private Card getCard(int index)
+        private Card getCard()
         {
             if (counter>0)
             {
@@ -108,13 +114,15 @@ namespace Project
 
         public int CountPoints(Card[] hnd)
         {
+            //get the hand in order to make it easier to count
             hnd = SortHand(hnd);
             int count = 0;
             bool running;
             int points = 0;
-            bool fifteen = false;
-            //extra = hnd[0];
+           
             //first to check for flush
+            //by iterating through the hand and counting the number of cards from each suit
+            //if there are 4 or more of one suit, points are awarded
             for (int b = 1; b < 5; b++)
             {
                 count = 0;
@@ -136,7 +144,7 @@ namespace Project
 
             }
             // next to check for pairs
-
+            // by counting the number of each card number and awarding points accordingly if there are 2 or more
             for (int b = 1; b < 14; b++)
             {
                 count = 0;
@@ -154,6 +162,7 @@ namespace Project
                 
             }
             //next to check for runs
+            //as the hand is in order, this algorithm just checks to see if the next card along is the same or one number above
             int exponent = 1;
             for (int i = 0; i < hnd.Length; i++)
             {
@@ -195,7 +204,7 @@ namespace Project
 
 
             //next to check for 15s
-
+            //using nested for loops to check all possible combination of cards that could add up to 15
 
             count = 0;
             //checking all possibilites of two cards
@@ -244,6 +253,7 @@ namespace Project
             }
 
             //finally to checks for nobs
+            //simply checks if the player has the jack of the same suit as the extracard
             for (int n = 0; n < 4; n++)
             {
                 if (hnd[4] != null && hnd[n] != null && hnd[n].suit == hnd[4].suit)
@@ -265,7 +275,7 @@ namespace Project
             Card[] right;
             Card[] result = new Card[array.Length];
             int temp = 0;
-
+            //split the cards up first
             if (array.Length <= 1)
                 return array;
             int centre = array.Length / 2;
@@ -282,11 +292,11 @@ namespace Project
                 right[temp] = array[i];
                 temp++;
             }
-          
+          //use recursion to split and eventually merge the sub-lists of cards on each side of centre
             left = mergeSort(left);
             
             right = mergeSort(right);
-           
+           //then merge each pair into a sub-list putting them in order.
             result = merge(left, right);
             return result;
         }

@@ -10,7 +10,7 @@ namespace Project
     {
         protected Hand hand;
         private int points;
-       // private Card extra;
+      
         public Player()
         {
             hand = new Hand();

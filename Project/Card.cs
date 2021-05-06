@@ -8,9 +8,9 @@ namespace Project
 {
     class Card
     {
+        //each card has a suit and two numbers, as different numbers may be used when counting points
         public int suit;
         public int number;
-        
         public int tempnumber;
 
         public Card(int suit, int number, int tempnumber)
@@ -20,6 +20,7 @@ namespace Project
             this.tempnumber = tempnumber;
             
         }
+        //from the file of cards, assign each card an integer representation of the suit to be easier to use.
         private char ConvertSuit(int s)
         {
             char a = 'x';

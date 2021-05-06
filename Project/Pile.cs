@@ -9,8 +9,9 @@ namespace Project
     
     class Pile
     {
+        //array of cards called pile which is the cards in the centre after they've been played
         private Card[] pile;
-        private const int size = 20;
+        private const int size = 12;
         private int top;
         public Pile()
         {

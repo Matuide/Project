@@ -8,19 +8,22 @@ namespace Project
 {
     class Cribbage
     {
+
         private Deck deck;
         private Card extracard;
         private Player[] players = new Player[2];
-        private Crib c;
+        private Crib crib;
         private Pile pile;
 
         public Cribbage()
         {
+            //where the deck of cards is made at the beginning of the game 
             deck = new Deck();
+            //an array of players stores the two players for easy access
             players[0] = new HumanPlayer();
             players[1] = new AIPlayer();
 
-            c = new Crib();
+            crib = new Crib();
 
             pile = new Pile();
 
@@ -33,7 +36,7 @@ namespace Project
 
         public Crib GetCrib()
         {
-            return c;
+            return crib;
         }
 
         public Pile GetPile()
@@ -54,17 +57,18 @@ namespace Project
 
         public void Shuffle()
         {
+            //generate a completely random number every time
             Random rand = new Random((int)DateTime.Now.Ticks);
             int r = 0;
             int g = 0;
 
             for (int i = 0; i < 1000; i++)
             {
-
+                //swapping two random numbers 1000 times 
 
                 r = rand.Next(0, 51);
                 g = rand.Next(0, 52);
-                // Random for remaining positions. 
+                // r Random for remaining positions. 
 
 
                 //swapping the elements 
@@ -82,16 +86,16 @@ namespace Project
         {
             Shuffle();
             Deal();
-            //players[0].SortHand();
-            //players[1].SortHand();
+
 
         }
 
 
         public void playerClickCard(Card cr)
         {
+            //moves the card the player clicked on from their hand to the crib
             players[0].getHand().RemoveCard(cr);
-            c.addtocrib(cr);
+            crib.addtocrib(cr);
         }
         public void playround()
         {
@@ -101,6 +105,7 @@ namespace Project
         }
         public void returntodeck()
         {
+            //after each round all cards must be returned to the deck to start again, this subroutine pushes all cards back to the deck
             for (int h = 0; h < 6; h++)
             {
                 deck.push(players[0].removecard());
@@ -116,6 +121,7 @@ namespace Project
 
             for (int a = 0; a < 6; a++)
             {
+                //each player in the player array, ie both players just get the top card for the deck which is popped.
                 players[0].addCard(deck.pop());
                 players[1].addCard(deck.pop());
             }
@@ -123,7 +129,9 @@ namespace Project
         }
         public void ThrowOne()
         {
-            Card r = null;
+            //this subroutine removes a card from the AI hand and moves it to the crib
+            //it doesn't take an input as no card is being clicked on to remove. this is automatic after the player throws a card away
+            Card returncard = null;
             int counter = 0;
             Card[] temphand = players[1].getHand().gethand();
             for (int b = 0; b < 6; b++)
@@ -131,14 +139,16 @@ namespace Project
 
                 if (temphand[b] != null)
                 {
+                    //just throwing cards that are not a multiple of 5 as these are less likely to be valuable
+                    //this is not throwing the best possible card only one that is likely to get the AI less points
                     if (temphand[b].tempnumber % 5 != 0)
                     {
                         if (counter < 1)
                         {
-                            r = temphand[b];
+                            returncard = temphand[b];
                             counter++;
-                            players[1].getHand().RemoveCard(r);
-                            c.addtocrib(r);
+                            players[1].getHand().RemoveCard(returncard);
+                            crib.addtocrib(returncard);
                         }
 
                     }

@@ -9,7 +9,7 @@
     <Grid Name="GridPanel" Background="green" Width="900" Height="840"  
    VerticalAlignment="Top" HorizontalAlignment="Center" >
         <Canvas Name="PileCanvas" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-        <Grid Name="Connect4_Board" Margin="20" Grid.Column="0">
+        <Grid Name="Cribbage_Board" Margin="20" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="1*"/>
